@@ -3,7 +3,13 @@ const hairlessCatImages = [
     "images/hairless_cat_2.jpeg",
     "images/hairless_cat_3.jpg",
     "images/hairless_cat_4.jpg",
-    "images/hairless_cat_5.jpg"
+    "images/hairless_cat_5.jpg",
+    "images/hairless_cat_6.webp",
+    "images/hairless_cat_7.jpg",
+    "images/hairless_cat_8.png",
+    "images/hairless_cat_9.jpg",
+    "images/hairless_cat_10.webp",
+    "images/hairless_cat_11.jpg",
 ];
 
 const hairlessCatURLs = hairlessCatImages.map(p => chrome.runtime.getURL(p));
