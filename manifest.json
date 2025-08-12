@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "John Pork Image Replacer",
+    "version": "1.0",
+    "description": "Replaces all images on every website with John Pork.",
+    "permissions": ["activeTab", "scripting"],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls"],
+            "js": ["content.js"]
+        }
+    ]
+}
