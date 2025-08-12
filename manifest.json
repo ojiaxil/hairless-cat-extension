@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "John Pork Image Replacer",
+    "name": "Hairless Cat Image Replacer",
     "version": "1.0",
-    "description": "Replaces all images on every website with John Pork.",
+    "description": "Replaces all images on every website with pictures of hairless cats.",
     "permissions": ["activeTab", "scripting"],
     "content_scripts": [
         {
