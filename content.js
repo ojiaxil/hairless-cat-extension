@@ -6,19 +6,41 @@ const hairlessCatImages = [
     "images/hairless_cat_5.jpg"
 ];
 
+const hairlessCatURLs = hairlessCatImages.map(p => chrome.runtime.getURL(p));
+
 function getRandomHairlessCats() {
-    return hairlessCatImages[Math.floor(Math.random() * hairlessCatImages.length)];
+    return hairlessCatURLs[Math.floor(Math.random() * hairlessCatURLs.length)];
 }
 
-function replaceImages() {
-    const imgs = document.querySelectorAll("img");
-    imgs.forEach(img => {
-        img.src = getRandomHairlessCats();
-        img.srcset = "";
-    });
+function replaceOne(img) {
+    if (!img || img.dataset.hairlessCatReplaced == "1") return;
+    img.src = getRandomHairlessCats();
+    img.removeAttribute("srcset");
+    img.removeAttribute("sizes");
+    img.dataset.hairlessCatReplaced = "1";
 }
 
-replaceImages();
+function replaceAll() {
+    document.querySelectorAll("img").forEach(replaceOne);
+}
 
-const observer = new MutationObserver(replaceImages);
-observer.observe(document.body, { childList: true, subtree: true });
+replaceAll();
+
+const observer = new MutationObserver(mutations => {
+    for (const m of mutations) {
+        if (m.type == "childList") {
+            m.addedNodes.forEach(node => {
+                if (node.tagName == "IMG") replaceOne(node);
+                else if (node.querySelectorAll) node.querySelectorAll("img").forEach(replaceOne);
+            });
+        } else if (m.type == "attributes" && m.target.tagName == "IMG") {
+            replaceOne(m.target);
+        }
+    }
+});
+observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["src", "srcset"]
+});
