@@ -1,9 +1,9 @@
 const hairlessCatImages = [
     "images/hairless_cat_1.png",
-    "images/hairless_cat_2.png",
-    "images/hairless_cat_3.png",
-    "images/hairless_cat_4.png",
-    "images/hairless_cat_5.png"
+    "images/hairless_cat_2.jpeg",
+    "images/hairless_cat_3.jpg",
+    "images/hairless_cat_4.jpg",
+    "images/hairless_cat_5.jpg"
 ];
 
 function getRandomHairlessCats() {
